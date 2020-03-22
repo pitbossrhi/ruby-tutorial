@@ -18,7 +18,11 @@ class Arithmetic
   end
 
   def valid_operation?(op)
-    %w[+ - / *].include? op
+    operations.include? op
+  end
+
+  def operations
+    %w[+ - / *]
   end
 end
 
@@ -31,7 +35,7 @@ class Calculator
     print 'Operation: '
     operation = gets.chomp.strip()
 
-    raise 'Invalid operation' unless @math.valid_operation?(operation)
+    raise "Invalid operation (#{operation}) must be one of #{@math.operations.join(', ')}" unless @math.valid_operation?(operation)
 
     print 'First Number: '
     x = Float(gets.chomp)
